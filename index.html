@@ -1,1 +1,436 @@
-hi
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ارشیا | توسعه‌دهنده وب</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Vazirmatn', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+        }
+        
+        .glass-light {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #A855F7, #8B5CF6, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.1), 0 4px 6px -2px rgba(168, 85, 247, 0.05);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #A855F7, #8B5CF6);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .skill-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #A855F7, #8B5CF6);
+            border-radius: 3px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-form:focus-within {
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.15);
+            border-color: rgba(168, 85, 247, 0.5);
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.05);
+            color: #A855F7;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-fade {
+                animation: mobileFade 0.3s ease-out;
+            }
+            
+            @keyframes mobileFade {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        }
+        
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #A855F7, #8B5CF6);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(90deg, #8B5CF6, #7C3AED);
+        }
+        
+        .animate-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-white via-purple-50 to-white min-h-screen text-gray-800">
+    <nav x-data="{ isMenuOpen: false, activeSection: 'home' }" 
+         @scroll.window="activeSection = window.scrollY < 400 ? 'home' : window.scrollY < 1200 ? 'about' : window.scrollY < 2000 ? 'skills' : 'contact'" 
+         class="fixed top-0 left-0 right-0 z-40 glass-light transition-all duration-300 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-xl font-bold">
+                    <span class="gradient-text">ارشیا</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" @click="activeSection = 'home'" :class="activeSection === 'home' ? 'text-purple-600' : 'text-gray-600 hover:text-purple-600'" class="nav-link text-sm font-medium transition-colors duration-300">صفحه اصلی</a>
+                    <a href="#about" @click="activeSection = 'about'" :class="activeSection === 'about' ? 'text-purple-600' : 'text-gray-600 hover:text-purple-600'" class="nav-link text-sm font-medium transition-colors duration-300">درباره من</a>
+                    <a href="#skills" @click="activeSection = 'skills'" :class="activeSection === 'skills' ? 'text-purple-600' : 'text-gray-600 hover:text-purple-600'" class="nav-link text-sm font-medium transition-colors duration-300">مهارت‌ها</a>
+                    <a href="#contact" @click="activeSection = 'contact'" :class="activeSection === 'contact' ? 'text-purple-600' : 'text-gray-600 hover:text-purple-600'" class="nav-link text-sm font-medium transition-colors duration-300">تماس</a>
+                </div>
+                
+                <button @click="isMenuOpen = !isMenuOpen" class="md:hidden text-gray-600 p-2">
+                    <i :class="isMenuOpen ? 'fas fa-times' : 'fas fa-bars'" class="text-lg"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div x-show="isMenuOpen" x-transition:enter="transition ease-out duration-200" 
+             x-transition:enter-start="opacity-0 transform -translate-y-2" 
+             x-transition:enter-end="opacity-100 transform translate-y-0" 
+             x-transition:leave="transition ease-in duration-200" 
+             x-transition:leave-start="opacity-100 transform translate-y-0" 
+             x-transition:leave-end="opacity-0 transform -translate-y-2" 
+             class="md:hidden glass-light mt-1">
+            <div class="px-4 py-3 space-y-2">
+                <a href="#home" @click="isMenuOpen = false; activeSection = 'home'" class="block w-full text-left text-gray-600 hover:text-purple-600 py-2 text-sm transition-colors duration-300">صفحه اصلی</a>
+                <a href="#about" @click="isMenuOpen = false; activeSection = 'about'" class="block w-full text-left text-gray-600 hover:text-purple-600 py-2 text-sm transition-colors duration-300">درباره من</a>
+                <a href="#skills" @click="isMenuOpen = false; activeSection = 'skills'" class="block w-full text-left text-gray-600 hover:text-purple-600 py-2 text-sm transition-colors duration-300">مهارت‌ها</a>
+                <a href="#contact" @click="isMenuOpen = false; activeSection = 'contact'" class="block w-full text-left text-gray-600 hover:text-purple-600 py-2 text-sm transition-colors duration-300">تماس</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 pb-16 relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-48 h-48 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+            <div class="absolute -bottom-20 -left-20 w-48 h-48 bg-violet-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style="animation-delay: 2s"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-fuchsia-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style="animation-delay: 4s"></div>
+        </div>
+        
+        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-6">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 leading-tight">
+                    سلام! من 
+                    <span class="gradient-text">ارشیا</span> هستم
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-6">
+                    <span class="font-semibold">توسعه‌دهنده وب • طراح UI/UX</span>
+                </p>
+                <p class="text-lg text-gray-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    با بیش از ۴ سال تجربه در کدنویسی و طراحی وب، سایت‌ها رو با خلاقیت، دقت و حوصله می‌سازم
+                </p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="#skills" class="bg-gradient-to-r from-purple-500 to-violet-500 text-white px-6 py-3 rounded-full font-semibold text-base hover:shadow-lg transition-all duration-300 transform hover:scale-105 hover-scale flex items-center gap-2">
+                    مهارت‌ها
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="border-2 border-purple-300 text-purple-600 px-6 py-3 rounded-full font-semibold text-base hover:bg-purple-50 transition-all duration-300 glass hover-scale">
+                    تماس با من
+                </a>
+            </div>
+            
+            <div class="mt-12 flex items-center justify-center space-x-6 text-gray-400">
+                <div class="flex flex-col items-center">
+                    <div class="text-2xl font-bold text-purple-600">۴+</div>
+                    <div class="text-xs text-gray-500">سال تجربه</div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="text-2xl font-bold text-purple-600">۳۰+</div>
+                    <div class="text-xs text-gray-500">پروژه</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    درباره <span class="gradient-text">من</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    من ارشیا هستم؛ همیشه تلاشم اینه که بهترین‌ها رو بسازم، جدیدترین مهارت‌ها رو یاد بگیرم و با خلاقیت و حوصله، پروژه‌هایی متفاوت خلق کنم!
+                </p>
+            </div>
+            
+            <div class="glass p-6 md:p-8 animate-reveal" id="about-content">
+                <div class="text-center md:text-right">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-quote-left text-purple-500 ml-2"></i>
+                        درباره من
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed text-base md:text-lg">
+                        سلام! من ارشیا هستم، با بیش از ۴ سال تجربه در کدنویسی و طراحی وب. سایت‌ها رو با خلاقیت، دقت و حوصله می‌سازم و همیشه تلاشم اینه که بهترین نتیجه رو ارائه بدم. من همیشه در مسیر یادگیری و پیشرفت هستم تا کارهایی بسازم که واقعاً متمایز باشن!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-16 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    مهارت‌های <span class="gradient-text">من</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    من به مهارت‌های خودم افتخار می‌کنم و همیشه در حال یادگیری و بهبود هستم
+                </p>
+            </div>
+            
+            <div class="glass p-6 md:p-8 animate-reveal" id="skills-content">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-laptop-code text-purple-500 ml-2"></i>
+                    مهارت‌های فنی
+                </h3>
+                
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">HTML / CSS</span>
+                            <span class="text-purple-600">۹۵٪</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">JavaScript</span>
+                            <span class="text-purple-600">۹۰٪</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">Python (در حال یادگیری...)</span>
+                            <span class="text-purple-600">۲۵٪</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">PHP (در حال یادگیری...)</span>
+                            <span class="text-purple-600">۲۰٪</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 50%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    در تماس <span class="gradient-text">باشید</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    اگه میخوای با من در ارتباط باشی کافیه فرم رو پر کنی و ارسال کنی!
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass p-6 animate-reveal" id="contact-info">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">اطلاعات تماس</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 bg-white/50 rounded-lg backdrop-blur-sm border border-white/20">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center ml-3">
+                                <i class="fas fa-envelope text-purple-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-800">ایمیل</div>
+                                <a href="mailto:arshiacoder@gmail.com" class="text-purple-600 hover:text-purple-800 transition-colors duration-300 text-sm">arshiacoder@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-3 bg-white/50 rounded-lg backdrop-blur-sm border border-white/20">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center ml-3">
+                                <i class="fab fa-telegram-plane text-purple-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-800">تلگرام</div>
+                                <a href="https://t.me/ArshiaUs" target="_blank" class="text-purple-600 hover:text-purple-800 transition-colors duration-300 text-sm">@ArshiaUs</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-3 bg-white/50 rounded-lg backdrop-blur-sm border border-white/20">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center ml-3">
+                                <i class="fab fa-github text-purple-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-800">گیت‌هاب</div>
+                                <a href="https://github.com/arshia-coder" target="_blank" class="text-purple-600 hover:text-purple-800 transition-colors duration-300 text-sm">github.com/arshia-coder</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-reveal" id="contact-form-container">
+                    <form class="contact-form p-6 glass" @submit.prevent="alert('پیام شما ارسال شد!')">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">ارسال پیام</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">نام و نام خانوادگی</label>
+                                <input type="text" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm" placeholder="نام خود را وارد کنید">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">ایمیل</label>
+                                <input type="email" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm" placeholder="ایمیل خود را وارد کنید">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">موضوع</label>
+                                <input type="text" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm" placeholder="موضوع پیام">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">پیام</label>
+                                <textarea rows="4" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm" placeholder="متن پیام خود را وارد کنید"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-violet-500 text-white py-2 rounded-lg font-semibold hover:shadow-md transition-all duration-300 transform hover:scale-105 hover-scale text-sm flex items-center justify-center">
+                                ارسال پیام
+                                <i class="fas fa-paper-plane mr-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-50 py-8 border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-xl font-bold mb-3">
+                    <span class="gradient-text">ارشیا</span>
+                </div>
+                <p class="text-gray-600 text-sm mb-5">توسعه‌دهنده وب • طراح UI/UX</p>
+                
+                        &copy; 2025 ارشیا. تمامی حقوق محفوظ است.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const revealElements = document.querySelectorAll('.animate-reveal');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
