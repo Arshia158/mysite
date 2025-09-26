@@ -1,0 +1,155 @@
+<html dir="rtl" lang="en" xml:lang="en">
+
+<head>
+    <title>کانون زبان ایران</title>
+    <link rel="shortcut icon" href="https://exam.ili.ir/assets/favicon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="کانون زبان ایران" />
+    <link rel="stylesheet" type="text/css" href="https://exam.ili.ir/assets/style.css" />
+    <script src="https://exam.ili.ir/assets/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .container1 {
+            width: 100%;
+            background-color: #000;
+            position: absolute;
+            z-index: 900;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            opacity: .8;
+            overflow: hidden;
+        }
+
+        .modal {
+            margin: auto;
+            height: 200px;
+            position: absolute;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 5px #000;
+            z-index: 1000;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .modal table {
+            width: 100%;
+        }
+
+        .modal table th {
+            padding: 8px;
+            background-color: #efefef;
+        }
+
+        .modal table td {
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container"> <!--محتویات  سایت -->
+        <div class="content-header"> <!--هدر سایت -->
+            <div class="content-header-image">
+                <img src="assets/logo.jpeg" style="border-radius: 180%;" />
+            </div>
+            <div class="content-header-h">
+                <h2 style="padding-top: 15px; margin: 0">کانون زبان ایران</h2>
+                <h3 style="margin: 5px; padding: 0">آزمون آنلاین</h3>
+            </div>
+        </div>
+        <div role="main">
+            <div class="row justify-content-center">
+                <div class="col-xl-11 col-sm-11">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-body" style="text-align: center">
+                                <div style="text-align: center">
+                                    <h4 style="font-weight: bold; color: green">تست صدا</h4>
+                                    <audio controls="true" controlsList="nodownload">
+                                        <source src="assets/audio_test.mpeg">
+                                    </audio>
+
+                                    <div style="text-align: center; padding: 10px">
+                                        <div style="background-color: #9c0300; color: #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 3px 3px 5px #ccc">
+                                            <div style="font-size: 30px; font-weight: : bold">توجه</div>
+                                            لطفا در ساعت اولیه وارد آزمون شوید و آزمون خود را به ساعات پایانی موکول ننماید.
+                                        </div>
+                                        <div style="background-color: #f3aec4; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 3px 3px 5px #ccc">
+                                            زبان آموزان گرامی: شرکت در نظرسنجی الزامی می باشد.
+                                            <div><a style="color: #b83500;" href="https://survey.ili.ir"><b> شرکت در نظرسنجی </b></a></div>
+                                        </div>
+                                        <div style="background-color: #fae1c8; padding: 20px; border-radius: 10px; box-shadow: 3px 3px 5px #ccc">
+                                            زبان آموزان می بایست حداکثر تا ساعت 21 روز آزمون اقدام به شروع آزمون نمایندو فقط تا ساعت 23 امکان حضور در آزمون را دارند. ساعت 23، فارغ از ساعت شروع آزمون، سامانه بسته خواهد شد.
+                                            <div><a href="https://www.ili.ir/exam"><b>مشاهده راهنمای آزمون</b></a></div>
+                                        </div>
+                                    </div>
+
+                                    <form action="" method="post" style="margin-top: 20px">
+                                                                                <div style="margin-bottom: 10px">
+                                            <input type="checkbox"  id="test-voice" style="width: 20px; height: 20px; position: absolute">
+                                            <label id="test-voice-chk" for="test-voice" style="margin: auto 28px;">
+                                                صدا را تست کردم و مشکلی وجود نداشت.
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <input name="username" class="form-control" value="" style="width: 250px; border-radius: 5px; padding: 5px 15px; " placeholder="کد زبان آموزی">
+                                        </div>
+                                        <div style="margin-top: 10px">
+                                            <button  disabled  id="btn-send" class="btn-disabled" type="submit" name="btn_send">ورود به سیستم آزمون</button>
+                                        </div>
+                                    </form>
+                                    <div class="error" style="font-weight: bold">
+                                        زبان آموز گرامی : در صورت واجدشرایط بودن درآزمون ، گزینه شروع برای شما فعال می باشد.
+                                    </div>
+                                </div>
+                                <div style="padding-right: 30px; text-align: right">
+                                    <h4 style="font-weight: bold; color: #0da206">
+                                        زبان آموز گرامی
+                                    </h4>
+                                </div>
+                                <ul style="text-align: justify; line-height: 25px">
+                                    <li>ضروریست تست صدا را قبل از ورود به آزمون پخش و از شنیدن آن مطمئن شوید و سپس اقدام به شروع آزمون نمایید.</li>
+                                    <li>درصورت عدم شنیدن تست صدا ، کلیه موارد مربوط به نرم افزار سیستم خود را بررسی و درصورت عدم رفع مشکل با پشتیبانی تماس حاصل نمایید.</li>
+                                    <li>لازم به ذکر است عواقب ناشی از عدم رعایت مورد فوق برعهده زبان آموز می باشد.</li>
+                                </ul>
+                                <div style="text-align: justify">
+                                    <h3 style="text-align: center; color: #f73400; font-weight: bold; margin-top: 10px">نکته مهم در مورد قطع شدن اینترنت زبان آموزان</h3>
+                                    <ol style="line-height: 25px">
+                                        <li>زبان آموزان گرامی ، چنانچه به هر دلیل (قطعی اینترنت، بستن صفحه آزمون ، مشکل موبایل و کامپیوتر و...) از صفحه
+                                            آزمون خارج شدید،نیاز به پیگیری از پشتیبانی وجود ندارد. زیرا شما امکان ورود مجدد و ادامه آزمون تا پایان زمان مشحض شده
+                                            را دارید . بنابراین در صورت وقوع این موضوع ، هرچه سریعتر به صفحه آزمون باز گردید.</li>
+                                        <li>قبل از شروع آزمون از خاموش بودن فیلتر شکن سیستم خود اطمینان حاصل نمایید.</li>
+                                        <li>برای توضیحات بیشتر به فایل راهنما مراجعه نمایید.</li>
+                                    </ol>
+                                    <!--<div style="color: #f71200; margin-right: 25px">
+                                    <b>تذکر:</b> زبان آموزان می بایست حداکثر تا ساعت 14 روز آزمون اقدام به شروع آزمون فرمایند.
+                                </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#test-voice').change(function() {
+                if ($(this).prop('checked')) {
+                    $('#btn-send').attr('disabled', false).removeClass('btn-disabled').addClass('btn-success')
+                } else {
+                    $('#btn-send').attr('disabled', true).removeClass('btn-success').addClass('btn-disabled')
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
